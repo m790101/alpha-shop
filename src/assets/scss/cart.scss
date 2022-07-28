@@ -1,0 +1,144 @@
+.card-name,
+.card-number,
+.card-validation {
+margin-top: 24px;
+}
+.card-validation {
+  display: grid;
+  grid-template-columns: repeat(6,1fr);
+  gap: 30px;
+  & .card-date {
+    grid-column: 1/4;
+  }
+  & .ccv {
+    grid-column: 4/7 
+  }
+}
+.cart-wrapper{
+    box-shadow: 3px 0 13px 0 rgba(100, 112, 134, 0.1);
+    margin-top: 32px;
+    border: 1px solid var(--pale-gray);
+    padding: 18px 16px;
+}
+
+.item-panel {
+  border-bottom: 1px solid var(--pale-gray);
+  padding-bottom: 16px;
+  margin-top: 34px;
+}
+
+.item {
+    display:grid;
+    grid-template-columns: auto 1fr;
+    gap: 21px;
+    & .item-detail {
+        display: grid;
+        grid-template-columns: auto auto;
+          & .item-title {
+            text-align: start;
+            }
+          & .item-number {
+            display:flex;
+            align-items: center;
+            justify-content: start;
+            gap: 30px;
+            & .fas {
+                position: relative;
+                width:26px;
+                height:27px;
+                border-radius: 50%;
+                background-color: var(--pale-gray);
+                text-align:center;
+                line-height: 27px;
+                &::after{
+                    content: " ";
+                    position: absolute;
+                    display: block;
+                    background-color: var(--body-color);
+                    height: 2px;
+                    margin-top: -1px;
+                    top: 50%;
+                    left: 8px;
+                    right: 8px;
+                    z-index: 9;
+                }
+                &::before{
+                    content: " ";
+                    position: absolute;
+                    display: block;
+                    background-color: var(--body-color);
+                    width: 2px;
+                    margin-left: -1px;
+                    left: 50%;
+                    top: 9px;
+                    bottom: 8px;
+                    z-index: 9;
+                }
+              }
+            }
+        & .item-price,
+        & .item-title
+        {
+         font-size: 16px;
+        }
+      }
+  & .item-image{
+    background-image: url("https://specials-images.forbesimg.com/imageserve/62388d0010e8ea0e5a92d1c7/GOOD-AMERICAN-GOOD-STRAIGHT-SPLIT-POCKETS---BLUE449/0x800.jpg?cropX1=0&cropX2=768&cropY1=0&cropY2=969");
+    background-position: center;
+    background-size:cover;
+    width:100px;
+    height:100px;
+    border-radius:4px;
+  
+  
+  & .item-price {
+    text-align: end;
+  }
+}
+}
+
+.shipping {
+  border-bottom: 1px solid var(--pale-gray);
+  padding: 16px 0;
+}
+.total {
+  padding-top: 16px;
+}
+
+
+
+
+.cart-title {
+    display: initial;
+    font-size:1.5rem;
+  }
+
+  .item{
+    & .item-detail {
+      display: grid;
+      grid-template-columns: auto auto;
+        & .item-title {
+          text-align: start;
+          }
+        & .item-number {
+          display:flex;
+          align-items: center;
+          justify-content: start;
+          gap: 30px;
+          }
+      & .item-price,
+      & .item-title
+      {
+       font-size: 16px;
+      }
+    }
+  }
+  .shipping, .total {
+    font-size: 14px;
+  }
+  .shipping {
+  padding: 16px 0 32px 0;
+  }
+  .total {
+    padding-bottom: 16px;
+  }

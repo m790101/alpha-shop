@@ -4,13 +4,6 @@
   </div>
 </template>
 
-<style>
-@import "assets/scss/global.scss";
-@import "assets/css/root.css";
-#alpha-shop {
-  width: 80%;
-  margin: 0 auto;
-  max-width: 1110px;
- 
-}
+<style lang="scss">
+@import 'assets/scss/all.scss';
 </style>

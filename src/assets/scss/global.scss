@@ -180,7 +180,35 @@ body {
   );
   
   /* 使用@each 產出css spacer設定 */
-  
+.mb-1{
+  margin-bottom: 0.25rem;
+}
+
+.mb-2{
+  margin-bottom: 0.5rem;
+}
+.mb-3{
+  margin-bottom: 0.75rem;
+}
+.mb-4{
+  margin-bottom: 1rem;
+}
+
+.mb-5{
+  margin-bottom: 1.25rem;
+}
+
+.mb-6{
+  margin-bottom: 1.5rem;
+}
+
+.mb-7{
+  margin-bottom: 1.75rem;
+}
+.mb-8{
+  margin-bottom: 2rem;
+}
+
   %standard-boxshadow {
     box-shadow: 3px 0 13px 0 rgba(100, 112, 134, 0.1);
   }
@@ -290,6 +318,15 @@ body {
   .cursor-pointer {
     cursor: pointer;
   }
+
+  .font-heavy {
+    font-weight: bold;
+  }
+  .title-header {
+    font-size: 2rem;
+    font-weight: 700;
+  }
+
   @mixin getNumbers($num){
     @for $i from 1 through $num{
       &:nth-child(#{2 * $i - 1 }) .circle::after {

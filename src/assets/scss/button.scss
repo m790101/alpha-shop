@@ -1,0 +1,43 @@
+.btn-section {
+    border-top: 1px solid var(--pale-gray);
+    margin-top: 32px;
+    padding: 24px 0;
+    & .btn-next {
+        width: 174px;
+        background-color:var(--btn-pink);
+        color: var(--white);
+        &.active {
+        width: 40%;
+      }
+      &::after {
+        content:"\2192";
+        margin-left: 1rem;
+      }
+    }
+    & .btn-pre {
+      color: var(--body-color);
+      width:106px;
+      position: relative;
+       &::before {
+         position: absolute;
+         left:0;
+         content:"\2190";
+         color: var(--body-color);
+      }
+    }
+  }
+  .btn {
+    height:46px;
+    font-size: 14px;
+    border-radius: 8px;
+  }
+
+.btn-pre {
+        display:initial;
+        opacity: 0;
+        pointer-events: none;
+        &.active {
+          opacity: 1;
+          pointer-events: initial;
+        }
+      }

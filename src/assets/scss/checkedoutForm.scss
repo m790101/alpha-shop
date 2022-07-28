@@ -1,0 +1,158 @@
+form {
+    margin-top: 64px; 
+  }
+  
+  .input-phone {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 30px;
+    & .phone {
+      grid-column: 1/4;
+    }
+    & .email {
+      grid-column: 4/7;
+    }
+  }
+  
+  .input-address {
+    display: grid;
+    grid-template-columns: repeat(6,1fr);
+    gap: 30px;
+    & .state {
+      grid-column: 1/3;
+    }
+    & .address {
+      grid-column: 3/7;
+    }
+  }
+  .shipping-method {
+    max-width:435px;
+  }
+
+
+
+input{
+  width: 100%;
+  margin-top:8px;
+  border: 1px solid var(--light-gray);
+  border-radius: 4px;
+  font-size: 12px;
+  padding: 1rem;
+  &:hover, &:focus {
+    border-color: var(--dark-gray);
+  }
+}
+
+select {
+      -webkit-appearance: none;
+      border: 1px solid var(--light-gray);
+      border-radius: 4px;
+      font-size: 12px;
+      padding: 1rem;
+      &:hover, &:focus {
+        border-color: var(--dark-gray);
+        }
+      color: var(--body-color);
+      width:100%;
+      cursor: pointer;
+      background-color: transparent;
+      &:invalid {
+        color: #747474;
+      } 
+    }
+
+.select-wrapper {
+  margin-top:8px;
+  width: 100%;
+  position: relative;
+  &::after {
+    content: "";
+    border-style: solid;
+    border-width: 6px 5px 0 5px;
+    border-color: var(--light-gray) transparent transparent transparent;
+    position: absolute;
+    top: 50%;
+    right: 8px;
+    transform: translateY(-50%); 
+    z-index: -1;
+  }
+}
+
+
+input[type="radio"]{
+  -webkit-appearance:none;
+  border-radius: 50%;
+  background-color: var(--input-radio-bg);
+  border: 1px solid var(--input-radio);
+  &:checked {
+    box-shadow: inset 0 0 0 7px var(--input-radio);
+    border: 1px solid var(--input-radio);
+    background-color: white;
+  }
+}
+
+.input-name {
+  display: grid;
+  grid-template-columns: repeat(6,1fr);
+  gap: 30px;
+  
+}
+
+.name-title {
+  grid-column:1/3;
+}
+
+
+
+.name {
+  grid-column:3/7
+}
+.payment-info,
+.shipping-method,
+.shipping-address {
+  margin-top: 32px;
+}
+
+.shipping-method {
+  & .method {
+    display:flex;
+    height:60px;
+    margin-top: 24px;
+    border: 1px solid var(--pale-gray);
+    border-radius: 4px;
+    padding: 0 20px;
+    align-items: center;
+    &.active {
+      border: 1px solid var(--body-color);
+    }
+    & .method-input-wrapper {
+      margin-left:20px;
+      flex: 1;
+    }
+      & input[type="radio"]{
+        margin: 0px;
+        height:20px;
+        width: 20px;
+    }
+  }
+}
+.shipping-detail {
+  display:flex;
+  justify-content: space-between;
+  & label {
+    font-size:14px;
+  }
+}
+
+.card-info-wrapper {
+  display: grid;
+  grid-template-columns: repeat(6,1fr);
+  & .card-name {
+    grid-column:1/5;
+  }
+  & .card-number {
+    grid-column: 1/5;
+  }
+}
+
+
