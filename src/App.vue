@@ -1,13 +1,16 @@
 <template>
-  <div id="app">
+  <div id="alpha-shop">
     <router-view/>
-    <ul>
-      <li>12345</li>
-      <li>12345</li>
-    </ul>
   </div>
 </template>
 
 <style>
 @import "assets/scss/global.scss";
+@import "assets/css/root.css";
+#alpha-shop {
+  width: 80%;
+  margin: 0 auto;
+  max-width: 1110px;
+ 
+}
 </style>
