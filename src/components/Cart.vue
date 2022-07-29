@@ -18,16 +18,16 @@
           </div>
         </div>
       </div>
-    </div>
 
     <div class="shipping d-flex justify-content-between">
       <p>運費</p>
-      <p class="font-heavy">免費</p>
+      <p class="font-heavy">{{ShippingCost}}</p>
     </div>
     <div class="total d-flex justify-content-between">
       <p>小記</p>
       <p class="font-heavy">$<span>{{ priceResult}}</span></p>
     </div>
+  </div>
   </div>
 </template>
 
@@ -51,6 +51,12 @@ const dummyData = {
     ]
 }
 export default {
+  props:{
+    shippingMethod: {
+      type: String,
+      required: true
+    }
+  },
     data(){
         return {
             cartItems:[],
@@ -89,7 +95,22 @@ export default {
              this.cartItems.forEach((x) => {
               return total += x.price * x.number
             })
+            if(this.shippingMethod === "DHL貨運"){
+              return total+500
+            }
             return total
+        },
+        ShippingCost() {
+          
+          if(this.shippingMethod === "標準運送"){
+            return "免費"
+          }
+          else if(this.shippingMethod === "DHL貨運"){
+            return '$500' 
+          }
+          else{
+            return 0
+          }
         }
     },
     created() {

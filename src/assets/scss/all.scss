@@ -689,12 +689,10 @@ body {
     margin-top: 32px;
     padding: 24px 0;
     & .btn-next {
-      width: 100%;
       background-color:var(--btn-pink);
       color: var(--white);
-      &.active {
-        width: 40%;
-      }
+
+    
       &::after {
         content:"\2192";
         margin-left: 1rem;
@@ -704,7 +702,6 @@ body {
       color: var(--body-color);
       width:106px;
       position: relative;
-      display: none;
       &.active {
         display: initial;
       }
@@ -770,7 +767,9 @@ body {
         grid-column: 8/13;
       }
       & .btn-section {
+        display: flex;
         grid-column: 1/7;
+        justify-content: space-between;
         & .btn-next {
           width: 174px;
         }
@@ -785,7 +784,6 @@ body {
         }
       }
     }
-    
     .stepper {
       margin-top: 48px;
       & .step {

@@ -1,19 +1,28 @@
 <template>
-<div>
+  <div>
     <div class="main-title title-header font-heavy">結帳</div>
     <div class="section-wrapper">
         <section class="left-section">
-            <Stepper/>
-            <CheckedoutForm />
+            <Stepper
+            :step="step"
+            />
+            <CheckedoutForm
+            :step="step"
+             @handleShipping="shipping"
+             
+            />
         </section>
         <section class="right-section">
-          <Cart/>
+          <Cart
+          :shipping-method="shippingMethod"
+          />
         </section> 
         <div class="btn-section ">
-           <ButtonSection/>
-          </div>      
+           <button class="btn btn-pre" :class="{active: step > 1}" @click="preStep" >上一步</button>
+          <button class="btn btn-next "  @click="nextStep">{{buttonCheckout}}</button>
+        </div>      
          
-    </div>
+  </div>
 </div>
 </template>
 
@@ -21,35 +30,46 @@
 import Stepper from './../components/Stepper.vue'
 import CheckedoutForm from './../components/CheckedoutForm.vue'
 import Cart from './../components/Cart.vue'
-import ButtonSection from './../components/ButtonSection.vue'
+
 
 export default {
+  data(){
+    return {
+      step:1,
+      shippingMethod:""
+    }
+  },
     components: {
         Stepper,
         CheckedoutForm,
         Cart,
-        ButtonSection
+    },
+    methods: {
+      nextStep() {
+        if(this.step > 0 && this.step < 3){
+          this.step = this.step +1
+        }
+      },
+      preStep() {
+        if(this.step > 1 && this.step <= 3){
+          this.step = this.step -1
+        }
+      },
+      shipping(e) {
+        this.shippingMethod = e
+      }
+    },
+    computed: {
+      buttonCheckout() {
+        if(this.step === 3){
+          return "確認下單"
+        }
+        else{
+          return "下一步"
+        }
+      }
     }
+
 }
 </script>
 
-
-<style scoped lang="scss">
-
-.main-title {
-    font-size: 2.7rem;
-  }
-.section-wrapper {
-    display: grid;
-    grid-template-columns: repeat(12,1fr);
-    & .left-section {
-      grid-column: 1/7;
-    }
-    & .right-section {
-      grid-column: 8/13;
-    }
-    & .btn-section {
-      grid-column: 1/7;
-    }
-  }
-</style>

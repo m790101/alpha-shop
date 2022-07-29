@@ -1,7 +1,9 @@
 <template>
      <div class="form-panel">
       <form id="checkout-form">
-        <div class="shipping-address part">
+        <div class="shipping-address part"
+        v-show="step === 1"
+        >
           <div class="form-title title-header mb-8">運送地址</div>
          <div class="input-name mb-8">
            <div class="name-title">
@@ -15,7 +17,7 @@
            </div>
            <div class="name">
              <label for="name">姓名</label>
-             <input type="text" id="name" placeholder="請輸入姓名">
+             <input type="text" id="name" placeholder="請輸入姓名" v-model="checkoutData.name">
            </div>
          </div>
           <div class="input-phone mb-8">
@@ -45,10 +47,18 @@
            </div>
           </div>
         </div>
-        <div class="shipping-method part ">
+        <div class="shipping-method part "
+        v-show="step === 2"
+        >
           <div class="form-title title-header">運送方式</div>
-         <div class="method" data-id="0">
-             <input type="radio" id="standard-shipping" name="shipping-method">
+         <div class="method" :class="{active:checkoutData.shippingMethod === '標準運送'}">
+             <input type="radio"
+             id="standard-shipping"
+             name="shipping-method"
+             value="標準運送"
+             v-model="checkoutData.shippingMethod"
+             @change="shipping"
+             >
              <div class="method-input-wrapper">
               <div class="shipping-detail">
                 <label for="standard-shipping" >標準運送</label>
@@ -57,8 +67,15 @@
                <span>約3~7個工作天</span>
              </div>
          </div>
-       <div class="method" data-id="1">
-             <input type="radio" id="standard-shipping" name="shipping-method">
+       <div class="method" :class="{active:checkoutData.shippingMethod === 'DHL貨運'}">
+             <input
+             type="radio"
+             id="standard-shipping"
+             name="shipping-method"
+             value="DHL貨運"
+             v-model="checkoutData.shippingMethod"
+             @change="shipping"
+             >
              <div class="method-input-wrapper">
               <div class="shipping-detail">
                 <label for="standard-shipping" class="font-heavy">DHL貨運</label>
@@ -68,7 +85,9 @@
              </div>
          </div>
         </div>
-        <div class="payment-info part ">
+        <div class="payment-info part "
+        v-show="step === 3"
+        >
           <div class="form-title title-header">付款資訊</div>
           <div class="card-info-wrapper">
             <div class="card-name">
@@ -97,12 +116,25 @@
 
 <script>
 export default {
-  
+  props:{
+    step:{
+      type: Number,
+      required: true
+    }
+  },
+  data() {
+    return {
+      checkoutData: {
+        shippingMethod: "",
+        name:""
+      }
+    }
+  },
+  methods: {
+    shipping() {
+      const shipping = this.checkoutData.shippingMethod
+       this.$emit('handleShipping',shipping)
+    },
+  }
 }
 </script>
-
-<style scoped lang="scss">
-
-
-
-</style>
