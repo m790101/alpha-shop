@@ -1,6 +1,6 @@
 <template>
      <div class="form-panel">
-      <form id="checkout-form">
+      <form id="checkout-form" >
         <div class="shipping-address part"
         v-show="step === 1"
         >
@@ -9,7 +9,7 @@
            <div class="name-title">
               <label for="name-title">稱謂</label>
              <div class="select-wrapper">
-               <select id="name-title" required>
+               <select id="name-title" required v-model="checkoutData.salutation">
                <option>先生</option>
                <option>小姐</option>
              </select>
@@ -17,25 +17,25 @@
            </div>
            <div class="name">
              <label for="name">姓名</label>
-             <input type="text" id="name" placeholder="請輸入姓名" v-model="checkoutData.name">
+             <input type="text" id="name" placeholder="請輸入姓名" v-model="checkoutData.username">
            </div>
          </div>
           <div class="input-phone mb-8">
             <div class="phone mb-5">
              <label for="phone">電話</label>
-             <input type="phone" id="phone" placeholder="請輸入行動電話">
+             <input type="phone" id="phone" placeholder="請輸入行動電話" v-model="checkoutData.phone">
            </div>
             <div class="email">
              <label for="name">Email</label>
-             <input type="email" id="email" placeholder="請輸入電子郵件">
+             <input type="email" id="email" placeholder="請輸入電子郵件" v-model="checkoutData.email">
            </div>
           </div>
           <div class="input-address">
             <div class="state mb-5">
               <label for="state">縣市</label>
               <div class="select-wrapper">
-                 <select id="state" required>
-               <option disabled selected value="">請選擇縣市</option>
+                 <select id="state" required v-model="checkoutData.city">
+               <option disabled selected value="" >請選擇縣市</option>
                <option>台北市</option>
                <option>新北市</option>
              </select>
@@ -43,7 +43,7 @@
            </div>
            <div class="address">
              <label for="address">地址</label>
-             <input type="address" id="address" placeholder="請輸入地址">
+             <input type="address" id="address" placeholder="請輸入地址" v-model="checkoutData.addr">
            </div>
           </div>
         </div>
@@ -86,27 +86,27 @@
          </div>
         </div>
         <div class="payment-info part "
-        v-show="step === 3"
+        v-show="step >= 3"
         >
           <div class="form-title title-header">付款資訊</div>
           <div class="card-info-wrapper">
             <div class="card-name">
              <label for="card-name">持卡人姓名</label>
-             <input type="text" id="card-name" placeholder="John Doe">
+             <input type="text" id="card-name" placeholder="John Doe" v-model="checkoutData.ccname">
             </div>
             <div class="card-number">
              <label for="card-number">卡號</label>
-             <input type="text" id="card-number" placeholder="1111 2222 3333 4444 ">
+             <input type="text" id="card-number" placeholder="1111 2222 3333 4444 " v-model="checkoutData.cardNumber">
            </div>
           </div>
           <div class="card-validation">
             <div class="card-date">
              <label for="card-date">有效期限</label>
-             <input type="text" id="card-date" placeholder="MM/YY">
+             <input type="text" id="card-date" placeholder="MM/YY" v-model="checkoutData.expdate">
            </div>
             <div class="ccv">
              <label for="ccv">cvc/ccv</label>
-             <input type="text" id="ccv" placeholder="123">
+             <input type="text" id="ccv" placeholder="123" v-model="checkoutData.ccv">
            </div>
           </div>
         </div>
@@ -125,8 +125,18 @@ export default {
   data() {
     return {
       checkoutData: {
+        salutation:"",
+        username:"",
+        phone:"",
+        email:"",
+        city:"",
+        addr:"",
         shippingMethod: "",
-        name:""
+        ccname:"",
+        cardNumber:"",
+        expdate:"",
+        ccv:"",
+        totalPrice:""
       }
     }
   },
@@ -135,6 +145,17 @@ export default {
       const shipping = this.checkoutData.shippingMethod
        this.$emit('handleShipping',shipping)
     },
+    submitForm() {
+      this.$emit('afterSubmit',this.checkoutData)
+    }
+  },
+  watch: {
+    checkoutData:{
+      handler: function(){
+      this.$emit("handleCheckedoutData", this.checkoutData)
+    },
+    deep:true
+    } 
   }
 }
 </script>

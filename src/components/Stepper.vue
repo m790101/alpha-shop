@@ -10,7 +10,7 @@
         <p class="step-title">運送方式</p>
       </div>
         <span class="line"></span>
-      <div class="step" :class="{active: step ===3}">
+      <div class="step" :class="{active: step >= 3}">
         <div class="circle"></div>
         <p class="step-title">付款資訊</p>
       </div>

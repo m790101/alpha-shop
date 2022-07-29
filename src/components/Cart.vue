@@ -60,6 +60,7 @@ export default {
     data(){
         return {
             cartItems:[],
+            totalPrice: 0
         }
     },
     methods:{
@@ -91,7 +92,7 @@ export default {
     },
     computed: {
         priceResult(){
-            let total = 0
+          let total = 0
              this.cartItems.forEach((x) => {
               return total += x.price * x.number
             })
@@ -112,6 +113,11 @@ export default {
             return 0
           }
         }
+    },
+    watch:{
+      priceResult: function(){
+        this.$emit("afterTotalPrice", this.priceResult)
+      }
     },
     created() {
          this.fetchCartItem() 
