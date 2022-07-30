@@ -19,10 +19,15 @@
           />
         </section> 
         <div class="btn-section ">
-           <button class="btn btn-pre" :class="{active: step > 1}" @click="preStep" >上一步</button>
-          <button class="btn btn-next"
-          @click="nextStep"
-          >{{buttonCheckout}}</button>
+           <router-link :to="{name:'checkout', params:{id:step}}">
+            <button class="btn btn-pre" :class="{active: step > 1}" @click="preStep" >上一步</button>
+           </router-link>
+           <router-link :to="{name:'checkout', params:{id:step}}">
+              <button class="btn btn-next"
+              @click="nextStep"
+              >{{buttonCheckout}}</button>
+           </router-link>
+         
         </div>      
 
   </div>

@@ -115,6 +115,8 @@
 </template>
 
 <script>
+const STORAGE_KEY = 'checkout-data'
+
 export default {
   props:{
     step:{
@@ -147,15 +149,35 @@ export default {
     },
     submitForm() {
       this.$emit('afterSubmit',this.checkoutData)
+    },
+    saveStorage() {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(this.checkoutData))
     }
   },
   watch: {
     checkoutData:{
       handler: function(){
       this.$emit("handleCheckedoutData", this.checkoutData)
+      this.saveStorage()
     },
     deep:true
-    } 
+    },
+  },
+  created(){
+    this.checkoutData = JSON.parse(localStorage.getItem(STORAGE_KEY)) || 
+    { 
+        salutation:"",
+        username:"",
+        phone:"",
+        email:"",
+        city:"",
+        addr:"",
+        shippingMethod: "",
+        ccname:"",
+        cardNumber:"",
+        expdate:"",
+        ccv:"",
+        totalPrice:""}
   }
 }
 </script>
