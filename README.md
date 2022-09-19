@@ -1,5 +1,7 @@
 # alpha-shop
 
+A shopping cart page for checking out with interaction.
+
 ## Project setup
 ```
 npm install
@@ -22,3 +24,7 @@ npm run lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+
+### Contributor 
+haowen cheng
