@@ -11,7 +11,7 @@ const routes = [
     component: AlphaShop
   },
   {
-    path: '/checkout/:id',
+    path: '/checkout',
     name: 'checkout',
     component: AlphaShop
   },

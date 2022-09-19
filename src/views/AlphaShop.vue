@@ -19,31 +19,34 @@
           />
         </section> 
         <div class="btn-section ">
-           <router-link :to="{name:'checkout', params:{id:step}}">
+           <router-link :to="{name:'checkout', query:{id:step}}">
             <button class="btn btn-pre" :class="{active: step > 1}" @click="preStep" >上一步</button>
            </router-link>
-           <router-link :to="{name:'checkout', params:{id:step}}">
+           <router-link :to="{name:'checkout',query:{id:step}}" >
               <button class="btn btn-next"
+              v-if="step < 3"
               @click="nextStep"
-              >{{buttonCheckout}}</button>
+              >下一步</button>
            </router-link>
+              <button class="btn btn-next" v-if="step ===3" @click="check">確認下單</button>
+
          
         </div>      
 
   </div>
   <CheckourModel
   :checkoutData = checkoutData
-  v-if="step === 4"
+  v-if="isChecking"
   @afterBack="handleBack"
   />
 </div>
 </template>
 
 <script>
-import Stepper from './../components/Stepper.vue'
-import CheckedoutForm from './../components/CheckedoutForm.vue'
+import Stepper from './../components/Stepper'
+import CheckedoutForm from './../components/CheckedoutForm'
 import Cart from './../components/Cart.vue'
-import CheckourModel from '../components/CheckoutModel.vue'
+import CheckourModel from '../components/CheckoutModel'
 
 
 export default {
@@ -63,7 +66,8 @@ export default {
       cardNumber:"",
       expdate:"",
       ccv:"",
-       }
+       },
+       isChecking:false
       
     
     }
@@ -76,14 +80,15 @@ export default {
     },
     methods: {
       nextStep() {
-        if(this.step > 0 && this.step < 4){
+        if(this.step > 0 && this.step < 3){
           this.step = this.step +1
         }
       },
       preStep() {
-        if(this.step > 1 && this.step <= 4){
-          this.step = this.step -1
+        if(this.step > 1 && this.step < 4){
+          this.step = this.step -1 
         }
+
       },
       shipping(e) {
         this.checkoutData.shippingMethod = e
@@ -105,18 +110,16 @@ export default {
         this.checkoutData.ccv = ccv
       },
       handleBack() {
-        this.step = this.step -1
+        this.isChecking = false
+      },
+      check(){
+        this.isChecking = true
       }
     },
-    computed: {
-      buttonCheckout() {
-        if(this.step >= 3){
-          return "確認下單"
-        }
-        else{
-          return "下一步"
-        }
-      }
+    created(){
+  //console.log(Number(this.$route.query.id) )
+      this.step = Number(this.$route.query.id) 
+      
     }
 
 }
