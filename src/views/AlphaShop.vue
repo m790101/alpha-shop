@@ -43,10 +43,10 @@
 </template>
 
 <script>
-import Stepper from './../components/Stepper'
+import Stepper from './../components/Stepper.vue'
 import CheckedoutForm from './../components/CheckedoutForm'
 import Cart from './../components/Cart.vue'
-import CheckourModel from '../components/CheckoutModel'
+import CheckourModel from '../components/CheckoutModel.vue'
 
 
 export default {
@@ -118,7 +118,7 @@ export default {
     },
     created(){
   //console.log(Number(this.$route.query.id) )
-      this.step = Number(this.$route.query.id) 
+      this.step = Number(this.$route.query.id) || 1
       
     }
 
